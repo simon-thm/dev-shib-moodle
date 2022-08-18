@@ -9,16 +9,13 @@
     useful in conjunction with specific deployment choices, but those policies may
     not be applicable to your specific needs or constraints.    
 -->
-<AttributeFilterPolicyGroup id="ShibbolethFilterPolicy"
-        xmlns="urn:mace:shibboleth:2.0:afp"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="urn:mace:shibboleth:2.0:afp http://shibboleth.net/schema/idp/shibboleth-afp.xsd">
+<AttributeFilterPolicyGroup id="ShibbolethFilterPolicy" xmlns="urn:mace:shibboleth:2.0:afp" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:mace:shibboleth:2.0:afp http://shibboleth.net/schema/idp/shibboleth-afp.xsd">
 
-    <!--
+  <!--
     Example rule relying on a locally applied tag in metadata to trigger attribute
     release of some specific attributes. Add additional attributes as desired.
     -->
-<!--
+  <!--
 	<AttributeFilterPolicy id="Per-Attribute-singleValued">
 	    <PolicyRequirementRule xsi:type="ANY" />
 	 
@@ -38,10 +35,10 @@
 	</AttributeFilterPolicy>
 -->
 
-    <!--
+  <!--
     Same as above but more efficient form for an attribute with multiple values.
     -->
-<!--
+  <!--
     <AttributeFilterPolicy id="Per-Attribute-Affiliation">
         <PolicyRequirementRule xsi:type="EntityAttributeExactMatch"
             attributeName="http://shibboleth.net/ns/attributes/releaseAllValues"
@@ -52,11 +49,11 @@
     </AttributeFilterPolicy>
 -->
 
-    <!--
+  <!--
     Example rule for honoring Subject ID requirement tag in metadata.
     The example supplies pairwise-id if subject-id isn't explicitly required.
     -->
-<!--
+  <!--
     <AttributeFilterPolicy id="subject-identifiers">
         <PolicyRequirementRule xsi:type="ANY" />
 
@@ -82,8 +79,8 @@
     </AttributeFilterPolicy>
 -->
 
-    <!-- Release an additional attribute to an SP. -->
-<!--
+  <!-- Release an additional attribute to an SP. -->
+  <!--
     <AttributeFilterPolicy id="example1">
         <PolicyRequirementRule xsi:type="Requester" value="https://sp.example.org" />
 
@@ -91,8 +88,8 @@
     </AttributeFilterPolicy>
 -->
 
-    <!-- Release eduPersonScopedAffiliation to two specific SPs. -->
-<!--
+  <!-- Release eduPersonScopedAffiliation to two specific SPs. -->
+  <!--
     <AttributeFilterPolicy id="example2">
         <PolicyRequirementRule xsi:type="OR">
             <Rule xsi:type="Requester" value="https://sp.example.org" />
@@ -102,72 +99,83 @@
     </AttributeFilterPolicy>
 -->
 
-    <!-- Attribute release for all SPs (global) tagged as 'Research and Scholarship' -->
-    <AttributeFilterPolicy id="releaseRandSAttributeBundle">
-        <PolicyRequirementRule xsi:type="EntityAttributeExactMatch"
-                        attributeName="http://macedir.org/entity-category"
-                        attributeValue="http://refeds.org/category/research-and-scholarship"/>
-        <AttributeRule attributeID="eduPersonPrincipalName">
-            <PermitValueRule xsi:type="ANY" />
-        </AttributeRule>
-        <AttributeRule attributeID="eduPersonScopedAffiliation">
-            <PermitValueRule xsi:type="ANY" />
-        </AttributeRule>
-        <AttributeRule attributeID="givenName">
-            <PermitValueRule xsi:type="ANY" />
-        </AttributeRule>
-        <AttributeRule attributeID="surname">
-            <PermitValueRule xsi:type="ANY" />
-        </AttributeRule>
-        <AttributeRule attributeID="displayName">
-            <PermitValueRule xsi:type="ANY" />
-        </AttributeRule>
-        <AttributeRule attributeID="mail">
-            <PermitValueRule xsi:type="ANY" />
-        </AttributeRule>
-    </AttributeFilterPolicy>
+  <!-- Attribute release for all SPs (global) tagged as 'Research and Scholarship' -->
+  <AttributeFilterPolicy id="releaseRandSAttributeBundle">
+    <PolicyRequirementRule xsi:type="EntityAttributeExactMatch" attributeName="http://macedir.org/entity-category" attributeValue="http://refeds.org/category/research-and-scholarship" />
+    <AttributeRule attributeID="eduPersonPrincipalName">
+      <PermitValueRule xsi:type="ANY" />
+    </AttributeRule>
+    <AttributeRule attributeID="eduPersonScopedAffiliation">
+      <PermitValueRule xsi:type="ANY" />
+    </AttributeRule>
+    <AttributeRule attributeID="givenName">
+      <PermitValueRule xsi:type="ANY" />
+    </AttributeRule>
+    <AttributeRule attributeID="surname">
+      <PermitValueRule xsi:type="ANY" />
+    </AttributeRule>
+    <AttributeRule attributeID="displayName">
+      <PermitValueRule xsi:type="ANY" />
+    </AttributeRule>
+    <AttributeRule attributeID="mail">
+      <PermitValueRule xsi:type="ANY" />
+    </AttributeRule>
+  </AttributeFilterPolicy>
 
-    <!-- Attribute release for all InCommon SPs -->
-    <AttributeFilterPolicy id="releaseToInCommon">
-        <PolicyRequirementRule xsi:type="EntityAttributeExactMatch"
-                        attributeName="http://macedir.org/entity-category"
-                        attributeValue="http://id.incommon.org/category/registered-by-incommon"/>
-        <AttributeRule attributeID="eduPersonPrincipalName">
-            <PermitValueRule xsi:type="ANY" />
-        </AttributeRule>
-        <AttributeRule attributeID="eduPersonScopedAffiliation">
-            <PermitValueRule xsi:type="ANY" />
-        </AttributeRule>
-        <AttributeRule attributeID="givenName">
-            <PermitValueRule xsi:type="ANY" />
-        </AttributeRule>
-        <AttributeRule attributeID="surname">
-            <PermitValueRule xsi:type="ANY" />
-        </AttributeRule>
-        <AttributeRule attributeID="displayName">
-            <PermitValueRule xsi:type="ANY" />
-        </AttributeRule>
-        <AttributeRule attributeID="mail">
-            <PermitValueRule xsi:type="ANY" />
-        </AttributeRule>
-    </AttributeFilterPolicy>
+  <!-- Attribute release for all InCommon SPs -->
+  <AttributeFilterPolicy id="releaseToInCommon">
+    <PolicyRequirementRule xsi:type="EntityAttributeExactMatch" attributeName="http://macedir.org/entity-category" attributeValue="http://id.incommon.org/category/registered-by-incommon" />
+    <AttributeRule attributeID="eduPersonPrincipalName">
+      <PermitValueRule xsi:type="ANY" />
+    </AttributeRule>
+    <AttributeRule attributeID="eduPersonScopedAffiliation">
+      <PermitValueRule xsi:type="ANY" />
+    </AttributeRule>
+    <AttributeRule attributeID="givenName">
+      <PermitValueRule xsi:type="ANY" />
+    </AttributeRule>
+    <AttributeRule attributeID="surname">
+      <PermitValueRule xsi:type="ANY" />
+    </AttributeRule>
+    <AttributeRule attributeID="displayName">
+      <PermitValueRule xsi:type="ANY" />
+    </AttributeRule>
+    <AttributeRule attributeID="mail">
+      <PermitValueRule xsi:type="ANY" />
+    </AttributeRule>
+  </AttributeFilterPolicy>
 
-    <!-- the test SP container -->
-    <AttributeFilterPolicy id="SPtest">
-        <PolicyRequirementRule xsi:type="Requester" value="https://sptest.example.edu/shibboleth" />
-        <AttributeRule attributeID="eduPersonPrincipalName">
-            <PermitValueRule xsi:type="ANY" />
-        </AttributeRule>
-        <AttributeRule attributeID="mail">
-            <PermitValueRule xsi:type="ANY" />
-        </AttributeRule>
-        <AttributeRule attributeID="givenName">
-            <PermitValueRule xsi:type="ANY" />
-        </AttributeRule>
-        <AttributeRule attributeID="surname">
-            <PermitValueRule xsi:type="ANY" />
-        </AttributeRule>
-    </AttributeFilterPolicy>
-    <!-- end of test SP container -->
+  <!-- the test SP container -->
+  <AttributeFilterPolicy id="SPtest">
+    <PolicyRequirementRule xsi:type="Requester" value="https://sptest.example.edu/shibboleth" />
+    <AttributeRule attributeID="eduPersonPrincipalName">
+      <PermitValueRule xsi:type="ANY" />
+    </AttributeRule>
+    <AttributeRule attributeID="mail">
+      <PermitValueRule xsi:type="ANY" />
+    </AttributeRule>
+    <AttributeRule attributeID="givenName">
+      <PermitValueRule xsi:type="ANY" />
+    </AttributeRule>
+    <AttributeRule attributeID="surname">
+      <PermitValueRule xsi:type="ANY" />
+    </AttributeRule>
+  </AttributeFilterPolicy>
+  <!-- end of test SP container -->
 
+  <AttributeFilterPolicy id="Moodle">
+    <PolicyRequirementRule xsi:type="Requester" value="https://moodle.example.edu/shibboleth" />
+    <AttributeRule attributeID="uid">
+      <PermitValueRule xsi:type="ANY" />
+    </AttributeRule>
+    <AttributeRule attributeID="mail">
+      <PermitValueRule xsi:type="ANY" />
+    </AttributeRule>
+    <AttributeRule attributeID="givenName">
+      <PermitValueRule xsi:type="ANY" />
+    </AttributeRule>
+    <AttributeRule attributeID="surname">
+      <PermitValueRule xsi:type="ANY" />
+    </AttributeRule>
+  </AttributeFilterPolicy>
 </AttributeFilterPolicyGroup>

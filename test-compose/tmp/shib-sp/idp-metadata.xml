@@ -1,0 +1,37 @@
+<EntityDescriptor entityID="https://idp.example.edu/idp/shibboleth" xmlns="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:shibmd="urn:mace:shibboleth:metadata:1.0" xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+  <IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+    <Extensions>
+      <shibmd:Scope regexp="false">example.edu</shibmd:Scope>
+    </Extensions>
+    <KeyDescriptor use="signing">
+      <ds:KeyInfo>
+        <ds:X509Data>
+          <ds:X509Certificate>
+MIIDHDCCAgSgAwIBAgIJAPEnL5jgbeVoMA0GCSqGSIb3DQEBCwUAMBoxGDAWBgNV
+BAMMD2lkcC5leGFtcGxlLmVkdTAeFw0xODEwMTAyMDM1NDBaFw0yMzEwMDkyMDM1
+NDBaMBoxGDAWBgNVBAMMD2lkcC5leGFtcGxlLmVkdTCCASIwDQYJKoZIhvcNAQEB
+BQADggEPADCCAQoCggEBAKwTrvQhmFX3SUNgJAhQ/YV0UX56Rt53mwbiKuH+Ez83
+7z6XRynBVsfzHfbWe0IpNKx5mIr84dfbGhQKQBEKzQuek7ihW3J6PIVZN1A3icZZ
+B9i7gow902bT0ZfRG8QW49gl7pk3ASutPcO9Dq5Xc/AqWr3OSO/Pei0yBtTdzG3b
+rm0u0gbj3P2tjt7BN77wIB+yjJsND3ITtP0MFXIJxLTlty8thwqQOAOAYcF+rhC5
+znnBLsRNo0E57PtzZs8i/BpEX2uPTxpEyvlU1vtyxcKUiHtK5ZjOsDEkS2rEualr
++FILYg/Oxw1gi0+mNO1a94Ft+UoLiREztq6MQt8OK98CAwEAAaNlMGMwQgYDVR0R
+BDswOYIPaWRwLmV4YW1wbGUuZWR1hiZodHRwczovL2lkcC5leGFtcGxlLmVkdS9p
+ZHAvc2hpYmJvbGV0aDAdBgNVHQ4EFgQU3ZJ8oHkmlgPtZuZAxnzONccPsb8wDQYJ
+KoZIhvcNAQELBQADggEBAIJ4oZKSMGpF8J3qdfjLZGkc3iVbu/eiE1MD77no0oCz
+nelY0CNUBuFJk1Xv+Bv0fW0cVugtMPz4xi7zv0zkpS2IVxpPZWBosuVabUD9k+V4
+iN5woJdO7e2KRGvhlWmbkmoZUvhygDe0u0vblNfLzDwFQvxHXiWG//P7SanoQrjP
+dE8U21tYz+EFm6s5TvHxVhr9id8c+UacAFCpAtzUB+J8K1abx05XlKsySflkOQV9
+JbM4zOy5gXSI5dY9dGUF77g0muyC+jAhIhLSt/7v3vJgvBurrxPoeBFXOU3D+siT
+VZlKtYzYjJhVqXx1vKrWEE1hkpqm+iYgZe4MvgcdswY=
+          </ds:X509Certificate>
+        </ds:X509Data>
+      </ds:KeyInfo>
+    </KeyDescriptor>
+    <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://idp.example.edu/idp/profile/SAML2/Redirect/SSO"/>
+    <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://idp.example.edu/idp/profile/SAML2/POST/SSO"/>
+    <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST-SimpleSign" Location="https://idp.example.edu/idp/profile/SAML2/POST-SimpleSign/SSO"/>
+    <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="https://idp.example.edu/idp/profile/SAML2/SOAP/ECP"/>
+  </IDPSSODescriptor>
+</EntityDescriptor>
+

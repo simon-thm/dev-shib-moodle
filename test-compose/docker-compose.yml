@@ -18,11 +18,13 @@ services:
     depends_on:
      - data
     networks:
-     - front
-     - back
+      front:
+        ipv4_address: 10.10.2.2
+      back:
     ports:
      - "443:443"
-
+    extra_hosts:
+      - "idp.example.edu:127.0.0.1"
 
   data:
     build: ./data/
@@ -35,21 +37,72 @@ services:
     volumes:
      - shibidp_ldap:/var/lib/dirsrv
 
-
   sp:
     build: ./sp/
     expose:
      - "8443"
     networks:
-     - front
-     - back
+      front:
+        ipv4_address: 10.10.2.3
+      back:
     ports:
      - "8443:8443"
+    extra_hosts:
+      - "sp.example.edu:127.0.0.1"
 
+  moodle:
+    build: ./moodle/
+    depends_on:
+      - moodledb
+    environment:
+      MOODLE_DOCKER_DBTYPE: mariadb 
+      MOODLE_DOCKER_DBNAME: moodle
+      MOODLE_DOCKER_DBUSER: moodle
+      MOODLE_DOCKER_DBPASS: "m@0dl3ing"
+      LANG: en_US.UTF-8
+      LC_ADDRESS: de_DE.UTF-8
+      LC_IDENTIFICATION: de_DE.UTF-8
+      LC_MEASUREMENT: de_DE.UTF-8
+      LC_MONETARY: de_DE.UTF-8
+      LC_NAME: de_DE.UTF-8
+      LC_NUMERIC: de_DE.UTF-8
+      LC_PAPER: de_DE.UTF-8
+      LC_TELEPHONE: de_DE.UTF-8
+      LC_TIME: de_DE.UTF-8
+    ports:
+      - 8080:80
+    networks:
+      front:
+        ipv4_address: 10.10.2.4
+      back:
+    extra_hosts:
+      - "moodle.example.edu:127.0.0.1"
+      - "idp.example.edu:10.10.2.2"
+    volumes:
+      - "./moodle/container_files/shib/:/etc/shibboleth/"
+      - "./moodle/container_files/apache2/:/etc/apache2/"
+      - "./moodle/container_files/certs/:/var/www/certs/"
+
+
+  moodledb:
+    image: mariadb
+    environment:
+      MARIADB_USER: moodle
+      MARIADB_PASSWORD: "m@0dl3ing"
+      MARIADB_DATABASE: moodle
+      MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: true
+    volumes:
+      - ./mariadb_data:/var/lib/mysql
+    networks:
+      back:
 
 networks:
   front:
     driver: bridge
+    ipam:
+      config:
+        - subnet: 10.10.2.0/24
+          gateway: 10.10.2.1
   back:    
     driver: bridge
 
