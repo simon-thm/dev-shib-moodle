@@ -1,3 +1,6 @@
+Moodle - Shibboleth developement/testing stack
+based on:
+
 # TIER "Standalone" Shibboleth-IdP
 Used for building/running a TIER Shibb-IdP container without the TIER VM or the TIER intermediate docker image.
 
